@@ -12,6 +12,10 @@ class Category extends Model
 
     protected $appends =['image_path'];
 
+    public function product(){
+    return $this->hasMany(Product::class);
+    }
+
     public function getImagePathAttribute(){
         return asset('uploads/categories/'.$this->image);
     }

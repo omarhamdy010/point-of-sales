@@ -9,6 +9,7 @@
                 <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
             </div>
         </div>
+
         <div class="d-flex justify-content-between">
             <div class="tab-pane">
                 <p style="font-size: 15px">{{auth()->user()->first_name}} {{auth()->user()->last_name}}</p>
@@ -29,7 +30,7 @@
                 <li class="sidebar-item {{ request()->routeIs('users.index') ? 'active' : '' }}
                 {{ request()->routeIs('users.create') ? 'active' : '' }}">
                     <a href="{{route('users.index')}}" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
+                        <i class="fa fa-users"></i>
                         <span>users</span>
                     </a>
                 </li>
@@ -38,8 +39,17 @@
                 <li class="sidebar-item {{ request()->routeIs('categories.index') ? 'active' : '' }}
                 {{ request()->routeIs('categories.create') ? 'active' : '' }}">
                     <a href="{{route('categories.index')}}" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
+                        <i class="fa fa-archive"></i>
                         <span>categories</span>
+                    </a>
+                </li>
+            @endif
+            @if(auth()->user()->hasPermission('products_read'))
+                <li class="sidebar-item {{ request()->routeIs('products.index') ? 'active' : '' }}
+                {{ request()->routeIs('products.create') ? 'active' : '' }}">
+                    <a href="{{route('products.index')}}" class='sidebar-link'>
+                        <i class="fa fa-archive"></i>
+                        <span>products</span>
                     </a>
                 </li>
             @endif

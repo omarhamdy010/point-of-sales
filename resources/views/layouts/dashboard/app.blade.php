@@ -58,7 +58,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 
 <script src="{{asset('assets/js/adminlte.min.js')}}"></script>
-<!-- AdminLTE for demo purposes -->
+<script src="{{asset('assets/vendors/fontawesome/all.min.js')}}"></script>
 
 <script src="{{asset('assets/vendors/simple-datatables/simple-datatables.js')}}"></script>
 <script>
@@ -67,7 +67,6 @@
     let dataTable = new simpleDatatables.DataTable(table1);
 </script>
 
-<script src="assets/js/main.js"></script>
 
 <script src="{{asset('assets/js/demo.js')}}"></script>
 <script>

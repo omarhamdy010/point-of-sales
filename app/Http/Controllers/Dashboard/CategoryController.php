@@ -76,7 +76,7 @@ class CategoryController extends Controller
             'name' => 'required',
             'image' => 'image',
         ]);
-
+        $data = $request->except(['image']);
         if ($request->image) {
             if ($category->image != 'default.jpg') {
                 Storage::disk('public_uploads')->delete('/categories/' . $category->image);
