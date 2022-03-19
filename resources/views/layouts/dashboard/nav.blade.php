@@ -12,7 +12,9 @@
 
                     {{ 'العربيه' }}
 
-                @endif        </button>
+                @endif        
+            </button>
+
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                     <a rel="alternate" class="dropdown-item" hreflang="{{ $localeCode }}"
@@ -22,7 +24,21 @@
                 @endforeach
             </div>
         </div>
-        <div class="dropdown" style="width:250px; float:right;">
+
+        <!-- @if(!auth()->user())
+        <div class="btn-group mb-1">
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle me-1" type="button" id="dropdownMenuButton"
+                  data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a href="{{ route('login') }}" rel="alternate" class="dropdown-item">Log in</a>
+                </div>
+            </div>
+        </div>
+        
+        @endif -->
+        <!-- <div class="dropdown" style="width:250px; float:right;">
             @auth
                 <a class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
@@ -38,6 +54,7 @@
                     </form>
                 </div>
             @endauth
-        </div>
+        </div> -->
+
     </div>
 </nav>
