@@ -29,15 +29,15 @@
                                     @csrf
                                     @method('PATCH')
                                     <div class="row">
-                                        <div class="col-md-6 col-12">
+                                    @foreach(config('translatable.locales') as $local)
+                                    <div class="col-md-6 col-12">
                                             <div class="form-group">
-                                                <label for="name">Name</label>
-                                                <input type="text" value="{{$category->name}}" id="name"
-                                                       class="form-control"
-                                                       placeholder="Name" name="name">
+                                                <label for="name">{{__('site.'.$local .'.name')}}</label>
+                                                <input type="text" value="{{$category->translate($local)->name}}" id="name"                                                       class="form-control"
+                                                       placeholder="Name" name="{{$local}}[name]">
                                             </div>
                                         </div>
-
+                                    @endforeach
 
                                         <div class="col-md-6 col-12">
                                             <label for="formFile" class="form-label"> image </label>

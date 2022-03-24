@@ -35,14 +35,16 @@
                                     @csrf
                                     @method('post')
                                     <div class="row">
-                                        <div class="col-md-6 col-12">
+                                    @foreach(config('translatable.locales') as $local)
+                                    <div class="col-md-6 col-12">
                                             <div class="form-group">
-                                                <label for="last-name-column"> Name</label>
-                                                <input type="text" id="last-name-column" class="form-control"
-
-                                                       placeholder="Name" name="name">
+                                                <label for="last-name-column">{{__('site.'.$local .'.name')}}</label>
+                                                <input type="text" id="last-name-column" class="form-control" value="{{old($local.'.name')}}"
+                                                placeholder="Name" name="{{$local}}[name]">
                                             </div>
                                         </div>
+                                    @endforeach
+                                        
                                         <div class="col-md-6 col-12">
                                             <label for="formFile" class="form-label"> image </label>
                                             <input class="form-control" type="file" name="image" accept="image/*" id="formFile" onchange="loadFile(event)">

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use RealRashid\SweetAlert\Facades\Alert;
 
+
 class CategoryController extends Controller
 {
     public function __construct()
@@ -31,8 +32,7 @@ class CategoryController extends Controller
     }
 
 
-    public
-    function create()
+    public function create()
     {
         return view('dashboard.categories.create');
     }
@@ -43,7 +43,8 @@ class CategoryController extends Controller
 
         $request->validate([
             'image' => 'image',
-            'name' => 'required',
+            'ar.*' => 'required|unique:category_translations,name',
+            'en.*' => 'required|unique:category_translations,name',
 
         ]);
         $data = $request->except([ 'image']);
@@ -72,10 +73,12 @@ class CategoryController extends Controller
     public
     function update(Request $request, Category $category)
     {
-        $request->validate([
-            'name' => 'required',
-            'image' => 'image',
-        ]);
+        $rule = [];
+        foreach(config('translatable.locales') as $local)
+        {
+            $rule +=[$local.'.name'=>['required',Rule::unique('category_translations','name')->ignore($category->id,'category_id')]];
+        }
+        $request->validate($rule);
         $data = $request->except(['image']);
         if ($request->image) {
             if ($category->image != 'default.jpg') {
