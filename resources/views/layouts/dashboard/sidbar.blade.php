@@ -27,48 +27,85 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-        @if(auth()->user())
-            @if(auth()->user()->hasPermission('users_read'))
-                <li class="sidebar-item {{ Request::segment(3) == 'users' ? 'active' : '' }}
-                {{ request()->routeIs('users.create') ? 'active' : '' }}">
-                    <a href="{{route('users.index')}}" class='sidebar-link'>
-                        <i class="fa fa-users"></i>
-                        <span>users</span>
-                    </a>
-                </li>
+            @if(auth()->user())
+                @if(auth()->user()->hasPermission('users_read'))
+            <li class="sidebar-item  has-sub {{ Request::segment(3) == 'users' ? 'active' : '' }}
+            {{ Request::segment(4) == 'create' && Request::segment(3) == 'users' ? 'active' : '' }}
+            {{ Request::segment(5) == 'edit' && Request::segment(3) == 'users'? 'active' : '' }}">
+                <a href="#" class='sidebar-link'>
+                    <i class="fa fa-user"></i>
+                    <span>Users</span>
+                </a>
+                @if(auth()->user()->hasPermission('users_create'))
+                <ul class="submenu ">
+                    <li class="submenu-item {{ Request::segment(3) == 'users' ? 'active' : '' }}">
+
+                        <a href="{{route('users.index')}}"> <i class="fas fa-user"></i> users</a>
+                    </li>
+                    <li class="submenu-item request()->routeIs('users.create') ? 'active' : '' }}">
+                        <a href="{{route('users.create')}}"><i class="fas fa-user-plus"></i> create user</a>
+                    </li>
+                </ul>
+                @endif
+            </li>
             @endif
+            @endif
+
+
+
+            @if(auth()->user())
+                @if(auth()->user()->hasPermission('categories_read'))
+                    <li class="sidebar-item  has-sub {{ Request::segment(3) == 'categories' ? 'active' : '' }}
+                    {{ Request::segment(4) == 'create' && Request::segment(3) == 'categories' ? 'active' : '' }}
+                    {{ Request::segment(5) == 'edit'  && Request::segment(3) == 'categories' ? 'active' : '' }}">
+                        <a href="#" class='sidebar-link'>
+                            <i class="fa fa-archive"></i>
+                            <span>categories</span>
+                        </a>
+                        @if(auth()->user()->hasPermission('categories_create'))
+                            <ul class="submenu ">
+                                <li class="submenu-item {{ Request::segment(3) == 'categories' ? 'active' : '' }}">
+                                    <a href="{{route('categories.index')}}"><i class="fas fa-archive"></i>  categories</a>
+                                </li>
+                                <li class="submenu-item request()->routeIs('categories.create') ? 'active' : '' }}">
+                                    <a href="{{route('categories.create')}}"><i class="fas fa-plus-square"></i>  create category</a>
+                                </li>
+                            </ul>
+                        @endif
+                    </li>
+                @endif
             @endif
 
 
             @if(auth()->user())
-            @if(auth()->user()->hasPermission('categories_read'))
-                <li class="sidebar-item {{ Request::segment(3) == 'categories'? 'active' : '' }}
-                {{ request()->routeIs('categories.create') ? 'active' : '' }}">
-                    <a href="{{route('categories.index')}}" class='sidebar-link'>
-                        <i class="fa fa-archive"></i>
-                        <span>categories</span>
-                    </a>
-                </li>
-            @endif
-            @endif
-
-
-
-            @if(auth()->user())
-            @if(auth()->user()->hasPermission('products_read'))
-                <li class="sidebar-item {{ Request::segment(3) == 'products' ? 'active' : '' }}
-                {{ request()->routeIs('products.create') ? 'active' : '' }}">
-                    <a href="{{route('products.index')}}" class='sidebar-link'>
-                        <i class="fa fa-archive"></i>
-                        <span>products</span>
-                    </a>
-                </li>
+                @if(auth()->user()->hasPermission('products_read'))
+                    <li class="sidebar-item  has-sub {{ Request::segment(3) == 'products' ? 'active' : '' }}
+                    {{ Request::segment(4) == 'create' && Request::segment(3) == 'products' ? 'active' : '' }}
+                    {{ Request::segment(5) == 'edit'  && Request::segment(3) == 'products' ? 'active' : '' }}">
+                        <a href="#" class='sidebar-link'>
+                            <i class="fa fa-product-hunt"></i>
+                            <span>products</span>
+                        </a>
+                        @if(auth()->user()->hasPermission('products_create'))
+                            <ul class="submenu ">
+                                <li class="submenu-item {{ Request::segment(3) == 'products' ? 'active' : '' }}">
+                                    <a href="{{route('products.index')}}">products</a>
+                                </li>
+                                <li class="submenu-item request()->routeIs('products.create') ? 'active' : '' }}">
+                                    <a href="{{route('products.create')}}">create products</a>
+                                </li>
+                            </ul>
+                        @endif
+                    </li>
+                @endif
             @endif
 
-            @endif
+
+
 
             @if(!auth()->user())
             <li class="sidebar-item">
+                <i class="fa-regular fa-arrow-right-to-bracket"></i>
                 <a href="{{ route('login') }}" rel="alternate" class="dropdown-item"><span>Login</span></a>
             <li>
             @endif
@@ -76,8 +113,8 @@
             @if(auth()->user())
             <li class="sidebar-item">
                 <form method="POST" action="/logout" class="">
-                        @csrf
-                        <button class="btn btn-light-secondary" style="background: #ffffff" type="submit"><span>Log Out</span>
+                    @csrf
+                    <button class="btn btn-light-secondary" style="background: #ffffff" type="submit"><span>       <i class="fa fa-power-off "></i> LogOut</span>
                         </button>
                 </form>
             </li>

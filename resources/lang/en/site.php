@@ -29,8 +29,30 @@ return [
     'image' => 'Image',
     'product' => 'Product',
     'products' => 'Products',
-    'edit_category'=>'Edit Category',
-    'edit_Product'=>'Edit Category',
+    'edit_category' => 'Edit Category',
+    'edit_Product' => 'Edit Category',
+    'description' => 'description',
+    'edit_product'=>'edit product',
+    'related_product'=>'Related Product',
+    'phone'=>'Phone',
+    'profit_percent'=>'Profit Percent',
+    'stock'=>'Stock',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    'Purchasing_price'=>'Purchasing Price',
+    'selling_price'=>'Selling Price',
+    'product_count'=>'Product Count',
+    'ar' => [
+        'name' => 'Arabic name',
+        'description' => 'Arabic description',
+    ],
+
+    'en' => [
+        'name' => 'English name',
+        'description' => 'English description',
+    ]
 
 
 ];

@@ -27,13 +27,6 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6 mb-1">
-                                            <div class="input-group mb-3">
-                                                @if(auth()->user()->hasPermission('categories_create'))
-                                                <a href="{{route('categories.create')}}" class="btn btn-primary icon col-6 col-md-3 col-lg-2 pr4 pb2 pt2 bb bw1 b--gray1 hover-black bw0-pr db fl-pr">Create</a>
-                                                @else
-                                                    <a  class="btn btn-primary disabled icon col-6 col-md-3 col-lg-2 pr4 pb2 pt2 bb bw1 b--gray1 hover-black bw0-pr db fl-pr">Create</a>
-                                                @endif
-                                            </div>
                                         </div>
                                         <div class="col-md-6 mb-1">
                                             <form method="{{route('categories.index')}}" type="get">
@@ -61,6 +54,8 @@
                                     <tr>
                                         <th>#</th>
                                         <th>{{__('site.name')}}</th>
+                                        <th>{{__('site.product_count')}}</th>
+                                        <th>{{__('site.related_product')}}</th>
                                         <th>{{__('site.image')}}</th>
                                         <th>{{__('site.action')}}</th>
                                     </tr>
@@ -71,6 +66,8 @@
                                         <tr class="table-primary">
                                             <td class="text-bold-500">{{$index+1}}</td>
                                             <td class="text-bold-500">{{$category->name}}</td>
+                                            <td class="text-bold-500">{{$category->product->count()}}</td>
+                                            <td class="text-bold-500"><a href="{{route('products.index',['category_id'=>$category->id])}}" class="btn btn-info btn-sm">related product</a></td>
                                             <td class="text-bold-500"><img style=" height: 100px;width: 100px"  src="{{$category->image_path}}"></td>
                                             <td>
                                                 <form action="{{route('categories.destroy' , $category->id)}}" method="post">

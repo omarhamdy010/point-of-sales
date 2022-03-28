@@ -7,8 +7,10 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
 use RealRashid\SweetAlert\Facades\Alert;
+use function GuzzleHttp\Promise\all;
 
 
 class ProductController extends Controller
@@ -23,13 +25,13 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {
-
         $products = Product::when($request->search, function ($query) use ($request) {
-            return $query->where('name', 'like', '%' . $request->search . '%');
+            return $query->whereTranslationLike('name', '%'.$request->search.'%');
+        })->when($request->category_id,function ($q) use($request){
+          return $q->where('category_id',$request->category_id);
         })->latest()->paginate(10);
-
-
-        return view('dashboard.products.index', compact('products',));
+        $categories = Category::all();
+        return view('dashboard.products.index', compact('categories','products'));
     }
 
 
@@ -45,7 +47,8 @@ class ProductController extends Controller
     {
         $request->validate([
             'image' => 'image',
-            'name' => 'required',
+            'ar.*' => 'required',
+            'en.*' => 'required',
         ]);
         $data = $request->except([ 'image']);
         if ($request->image) {
@@ -65,16 +68,20 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        return view('dashboard.products.edit', compact('product'));
+        $categories = Category::all();
+        return view('dashboard.products.edit', compact('product','categories'));
     }
 
 
     public function update(Request $request, Product $product)
     {
-        $request->validate([
-            'name' => 'required',
-            'image' => 'image',
-        ]);
+        $rule = [];
+        foreach(config('translatable.locales') as $local)
+        {
+            $rule +=[$local.'.name'=>['required',Rule::unique('product_translations','name')->ignore($product->id,'product_id')]];
+            $rule +=[$local.'.description'=>['required',Rule::unique('product_translations','description')->ignore($product->id,'product_id')]];
+        }
+        $request->validate($rule);
         $data = $request->except(['image']);
 
         if($request->image) {

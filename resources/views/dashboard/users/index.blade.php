@@ -27,13 +27,6 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6 mb-1">
-                                            <div class="input-group mb-3">
-                                                @if(auth()->user()->hasPermission('users_create'))
-                                                <a href="{{route('users.create')}}" class="btn btn-primary icon col-6 col-md-3 col-lg-2 pr4 pb2 pt2 bb bw1 b--gray1 hover-black bw0-pr db fl-pr">Create</a>
-                                                @else
-                                                    <a  class="btn btn-primary disabled icon col-6 col-md-3 col-lg-2 pr4 pb2 pt2 bb bw1 b--gray1 hover-black bw0-pr db fl-pr">Create</a>
-                                                @endif
-                                            </div>
                                         </div>
                                         <div class="col-md-6 mb-1">
                                             <form method="{{route('users.index')}}" type="get">

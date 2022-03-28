@@ -31,38 +31,57 @@
                                         @endforeach
                                     </div>
                                 @endif
-                                <form class="form form-vertical" action="{{route('categories.store')}}" method="post" enctype="multipart/form-data">
+                                <form class="form form-vertical" action="{{route('categories.store')}}" method="post"
+                                      enctype="multipart/form-data">
                                     @csrf
                                     @method('post')
                                     <div class="row">
-                                    @foreach(config('translatable.locales') as $local)
-                                    <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label for="last-name-column">{{__('site.'.$local .'.name')}}</label>
-                                                <input type="text" id="last-name-column" class="form-control" value="{{old($local.'.name')}}"
-                                                placeholder="Name" name="{{$local}}[name]">
+                                        <div class="card-body">
+                                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                                @foreach(config('translatable.locales') as $local)
+                                                    <li class="nav-item" role="presentation">
+                                                        <a class="nav-link {{$loop->first?'active':''}}"
+                                                           id="{{$local}}-tab"
+                                                           data-bs-toggle="tab" href="#{{$local}}"
+                                                           role="tab" aria-controls="{{$local}}"
+                                                           aria-selected="true">{{$local == 'ar' ?'Arabic name':'English name'}}</a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                            <div class="tab-content" id="myTabContent">
+                                                @foreach(config('translatable.locales') as $local)
+                                                    <div class="tab-pane fade show {{$loop->first ? 'active':''}}"
+                                                         id="{{$local}}" role="tabpanel"
+                                                         aria-labelledby="{{$local}}-tab">
+                                                        <input type="text" id="last-name-column" class="form-control"
+                                                               placeholder="{{__('site.'.$local .'.name')}}"
+                                                               name="{{$local}}[name]" value="{{old($local.'.name')}}">
+                                                    </div>
+                                                @endforeach
                                             </div>
                                         </div>
-                                    @endforeach
-                                        
+
                                         <div class="col-md-6 col-12">
                                             <label for="formFile" class="form-label"> image </label>
-                                            <input class="form-control" type="file" name="image" accept="image/*" id="formFile" onchange="loadFile(event)">
-                                            <img id="output" style="margin-top: 20px ; height: 200px;width: 200px" src="{{asset('uploads/categories/default.jpg')}}" />
+                                            <input class="form-control" type="file" name="image" accept="image/*"
+                                                   id="formFile" onchange="loadFile(event)">
+                                            <img id="output" style="margin-top: 20px ; height: 200px;width: 200px"
+                                                 src="{{asset('uploads/categories/default.jpg')}}"/>
                                         </div>
                                     </div>
 
 
                                     <div class="col-12 d-flex justify-content-end">
-                                        <button type="submit" class="btn btn-primary me-1 mb-1" id="output">Submit</button>
+                                        <button type="submit" class="btn btn-primary me-1 mb-1" id="output">Submit
+                                        </button>
                                     </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-    </div>
-    </section>
+        </section>
     </div>
 @endsection
 

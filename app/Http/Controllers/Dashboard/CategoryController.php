@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -24,7 +25,7 @@ class CategoryController extends Controller
     {
 
         $categories = Category::when($request->search, function ($query) use ($request) {
-            return $query->where('name', 'like', '%' . $request->search . '%');
+            return $query->whereTranslationLike('name', '%' . $request->search . '%');
         })->latest()->paginate(10);
 
 

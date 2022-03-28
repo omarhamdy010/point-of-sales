@@ -36,48 +36,83 @@
                                     @csrf
                                     @method('post')
                                     <div class="row">
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label for="last-name-column"> Name</label>
-                                                <input type="text" id="last-name-column" class="form-control"
+                                            <div class="card-body">
+                                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                                    @foreach(config('translatable.locales') as $local)
+                                                        <li class="nav-item" role="presentation">
+                                                            <a class="nav-link {{$loop->first?'active':''}}"
+                                                               id="{{$local}}-tab"
+                                                               data-bs-toggle="tab" href="#{{$local}}"
+                                                               role="tab" aria-controls="{{$local}}"
+                                                               aria-selected="true">{{$local == 'ar' ?'Arabic name':'English name'}}</a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                                <div class="tab-content" id="myTabContent">
+                                                    @foreach(config('translatable.locales') as $local)
+                                                        <div class="tab-pane fade show {{$loop->first ? 'active':''}}"
+                                                             id="{{$local}}" role="tabpanel"
+                                                             aria-labelledby="{{$local}}-tab">
 
-                                                       placeholder="Name" name="name">
+                                                            <label for="last-name-column">{{__('site.'.$local .'.name')}}</label>
+
+                                                            <input type="text" id="last-name-column" class="form-control"
+                                                                   placeholder="{{__('site.'.$local .'.name')}}"
+                                                                   name="{{ $local }}[name]" value="{{old($local.'.name')}}">
+
+                                                            <label for="last-name-column">{{__('site.'.$local .'.description')}}</label>
+                                                             <textarea placeholder="{{__('site.'.$local .'.description')}}"
+                                                                       id="last-name-column" class="form-control ckeditor"
+                                                                       name="{{ $local }}[description]">{{old($local.'.description')}}</textarea>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
                                             </div>
-                                        </div>
+
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
-                                                <label for="last-name-column"> Price</label>
-                                                <input type="text" id="price" class="form-control" placeholder="Price"
-                                                       name="price">
+                                                <label for="last-name-column">selling price</label>
+                                                <input type="number" id="selling price" value="{{old('selling price')}}"
+                                                       class="form-control" placeholder="selling price"
+                                                       name="selling_price">
                                             </div>
                                         </div>
+
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
-                                                <label for="last-name-column"> Quantity</label>
-                                                <input type="text" id="price" class="form-control"
-                                                       placeholder="Quantity" name="quantity">
+                                                <label for="last-name-column">Purchasing price</label>
+                                                <input type="number" id="Purchasing price" value="{{old('Purchasing price')}}"
+                                                       class="form-control" placeholder="Purchasing price"
+                                                       name="Purchasing_price">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="last-name-column"> Stock</label>
+                                                <input type="number" id="Stock" class="form-control"
+                                                       value="{{old('stock')}}" placeholder="stock" name="stock">
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <label for="category"> Category</label>
-                                                    <select  class="form-control" name="category_id" >
-                                                        <option> Select Category</option>
-                                                        @foreach($categories as $category)
-                                                        <option  value="{{$category->id}}">{{$category->name}}</option>
-                                                        @endforeach
-                                                    </select>
+                                                <select class="form-control" name="category_id">
+                                                    <option> Select Category</option>
+                                                    @foreach($categories as $category)
+                                                        <option value="{{$category->id}}" {{old('category_id')==$category->id ? 'selected' : ''}}>{{$category->name}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <label for="formFile" class="form-label"> image </label>
                                             <input class="form-control" type="file" name="image" accept="image/*"
-                                                   id="formFile" onchange="loadFile(event)">
+                                                   value="{{old('image')}}" id="formFile" onchange="loadFile(event)">
                                             <img id="output" style="margin-top: 20px ; height: 200px;width: 200px"
                                                  src="{{asset('uploads/products/default.jpg')}}"/>
                                         </div>
                                     </div>
-
 
                                     <div class="col-12 d-flex justify-content-end">
                                         <button type="submit" class="btn btn-primary me-1 mb-1" id="output">Submit
