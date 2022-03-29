@@ -5,14 +5,14 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <p style="font-size:25px">{{__('site.categories')}}<small style="font-size:5px">{{$categories->count()}}</small></p>
+                    <p style="font-size:25px">{{__('site.clients')}}<small style="font-size:5px">{{$clients->count()}}</small></p>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a
                                     href="{{route('dashboard.index')}}">{{__('site.dashboard')}}</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">{{__('site.category')}}</li>
+                            <li class="breadcrumb-item active" aria-current="page">{{__('site.client')}}</li>
                         </ol>
                     </nav>
                 </div>
@@ -29,7 +29,7 @@
                                         <div class="col-md-6 mb-1">
                                         </div>
                                         <div class="col-md-6 mb-1">
-                                            <form method="{{route('categories.index')}}" type="get">
+                                            <form method="{{route('clients.index')}}" type="get">
                                                 @csrf
                                                 @method('get')
                                             <div class="input-group mb-3">
@@ -37,7 +37,7 @@
                                                             class="bi bi-search"></i></span>
                                                 <input type="text" class="form-control"
                                                        placeholder="{{__('site.search')}}"
-                                                       aria-label="Recipient's categoryname" value="{{request()->search}}" name="search" aria-describedby="button-addon2">
+                                                       aria-label="Recipient's clientname" value="{{request()->search}}" name="search" aria-describedby="button-addon2">
                                                 <button class="btn btn btn-primary" type="submit" id="button-addon2">Button</button>
                                             </div>
                                             </form>
@@ -47,38 +47,36 @@
                             </div>
                         </div>
                         <div class="card-content">
-                            @if($categories->count()>0)
+                            @if($clients->count()>0)
                             <div class="table-responsive">
                                 <table class="table mb-0">
                                     <thead>
                                     <tr>
                                         <th>#</th>
                                         <th>{{__('site.name')}}</th>
-                                        <th>{{__('site.product_count')}}</th>
-                                        <th>{{__('site.related_product')}}</th>
-                                        <th>{{__('site.image')}}</th>
+                                        <th>{{__('site.phone')}}</th>
+                                        <th>{{__('site.address')}}</th>
                                         <th>{{__('site.action')}}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
 
-                                    @foreach($categories as $index=>$category)
+                                    @foreach($clients as $index=>$client)
                                         <tr class="table-primary">
                                             <td class="text-bold-500">{{$index+1}}</td>
-                                            <td class="text-bold-500">{{$category->name}}</td>
-                                            <td class="text-bold-500">{{$category->product->count()}}</td>
-                                            <td class="text-bold-500"><a href="{{route('products.index',['category_id'=>$category->id])}}" class="btn btn-info btn-sm">related product</a></td>
-                                            <td class="text-bold-500"><img style=" height: 50px;width: 50px"  src="{{$category->image_path}}"></td>
+                                            <td class="text-bold-500">{{$client->name}}</td>
+                                            <td class="text-bold-500">{{$client->phone}}</td>
+                                            <td class="text-bold-500">{{$client->address}}</td>
                                             <td>
-                                                <form action="{{route('categories.destroy' , $category->id)}}" method="post">
+                                                <form action="{{route('clients.destroy' , $client->id)}}" method="post">
                                                     @csrf
                                                     @method('DELETE')
-                                                    @if(auth()->user()->hasPermission('categories_update'))
-                                                    <a href="{{route('categories.edit',$category->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i>Edit</a>
+                                                    @if(auth()->user()->hasPermission('clients_update'))
+                                                    <a href="{{route('clients.edit',$client->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i>Edit</a>
                                                     @else
                                                         <a class="btn btn-primary disabled">Edit</a>
                                                     @endif
-                                                    @if(auth()->user()->hasPermission('categories_delete'))
+                                                    @if(auth()->user()->hasPermission('clients_delete'))
                                                         <button type="submit" class="btn btn-danger delete"><i class="fa fa-trash"></i>Delete</button>
                                                     @else
                                                         <button type="submit" class="btn btn-danger disabled">Delete</button>
@@ -89,7 +87,7 @@
                                     @endforeach
                                     </tbody>
                                 </table>
-                                {{ $categories->appends(request()->query())->links() }}
+{{--                                {{ $clients->appends(request()->query())->links() }}--}}
                             </div>
                             @else
                                 <h2>{{__('site.no_data_found')}}</h2>

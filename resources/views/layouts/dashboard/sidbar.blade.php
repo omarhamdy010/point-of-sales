@@ -27,6 +27,7 @@
                     <span>Dashboard</span>
                 </a>
             </li>
+
             @if(auth()->user())
                 @if(auth()->user()->hasPermission('users_read'))
             <li class="sidebar-item  has-sub {{ Request::segment(3) == 'users' ? 'active' : '' }}
@@ -42,7 +43,7 @@
 
                         <a href="{{route('users.index')}}"> <i class="fas fa-user"></i> users</a>
                     </li>
-                    <li class="submenu-item request()->routeIs('users.create') ? 'active' : '' }}">
+                    <li class="submenu-item {{ request()->routeIs('users.create') ? 'active' : '' }}">
                         <a href="{{route('users.create')}}"><i class="fas fa-user-plus"></i> create user</a>
                     </li>
                 </ul>
@@ -87,11 +88,11 @@
                             <span>products</span>
                         </a>
                         @if(auth()->user()->hasPermission('products_create'))
-                            <ul class="submenu ">
+                            <ul class="submenu">
                                 <li class="submenu-item {{ Request::segment(3) == 'products' ? 'active' : '' }}">
                                     <a href="{{route('products.index')}}">products</a>
                                 </li>
-                                <li class="submenu-item request()->routeIs('products.create') ? 'active' : '' }}">
+                                <li class="submenu-item {{request()->routeIs('products.create') ? 'active' : '' }}">
                                     <a href="{{route('products.create')}}">create products</a>
                                 </li>
                             </ul>
@@ -100,26 +101,53 @@
                 @endif
             @endif
 
-
-
+            @if(auth()->user())
+                @if(auth()->user()->hasPermission('clients_read'))
+                    <li class="sidebar-item  has-sub {{ Request::segment(3) == 'clients' ? 'active' : '' }}
+                    {{ Request::segment(4) == 'create' && Request::segment(3) == 'clients' ? 'active' : '' }}
+                    {{ Request::segment(5) == 'edit'  && Request::segment(3) == 'clients' ? 'active' : '' }}">
+                        <a href="#" class='sidebar-link'>
+                            <i class="fa fa-product-hunt"></i>
+                            <span>clients</span>
+                        </a>
+                        @if(auth()->user()->hasPermission('clients_create'))
+                            <ul class="submenu">
+                                <li class="submenu-item {{ Request::segment(3) == 'clients' ? 'active' : '' }}">
+                                    <a href="{{route('clients.index')}}">clients</a>
+                                </li>
+                                <li class="submenu-item {{request()->routeIs('clients.create') ? 'active' : '' }}">
+                                    <a href="{{route('clients.create')}}">create products</a>
+                                </li>
+                            </ul>
+                        @endif
+                    </li>
+                @endif
+            @endif
 
             @if(!auth()->user())
             <li class="sidebar-item">
-                <i class="fa-regular fa-arrow-right-to-bracket"></i>
-                <a href="{{ route('login') }}" rel="alternate" class="dropdown-item"><span>Login</span></a>
+                <a href="{{ route('login') }}" rel="alternate" class="dropdown-item">
+                    <span><i class="fa fa-arrow-alt-circle-right"></i>   Login</span></a>
             <li>
+            @else
+
             @endif
+
+
 
             @if(auth()->user())
             <li class="sidebar-item">
                 <form method="POST" action="/logout" class="">
                     @csrf
-                    <button class="btn btn-light-secondary" style="background: #ffffff" type="submit"><span>       <i class="fa fa-power-off "></i> LogOut</span>
-                        </button>
+                    <button class="btn btn-light-secondary" style="background: #ffffff" type="submit">
+                        <span><i class="fa fa-power-off" ></i>   LogOut </span>
+                    </button>
                 </form>
             </li>
+            @else
+
             @endif
+
         </ul>
     </div>
-    <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
 </div>

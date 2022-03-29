@@ -90,7 +90,7 @@
                                                 <td class="text-bold-500">{{$product->profit_percent}}%</td>
                                                 <td class="text-bold-500">{{$product->stock}}</td>
                                                 <td class="text-bold-500">{{$product->category->name}}</td>
-                                                <td class="text-bold-500"><img style=" height: 100px;width: 100px"
+                                                <td class="text-bold-500"><img style=" height: 50px;width: 50px"
                                                                                src="{{$product->image_path}}"></td>
                                                 <td class="text-bold-500">{!! $product->description !!}</td>
                                                 <td>
