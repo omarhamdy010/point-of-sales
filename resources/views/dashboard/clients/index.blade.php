@@ -65,7 +65,7 @@
                                         <tr class="table-primary">
                                             <td class="text-bold-500">{{$index+1}}</td>
                                             <td class="text-bold-500">{{$client->name}}</td>
-                                            <td class="text-bold-500">{{$client->phone}}</td>
+                                            <td class="text-bold-500">{{implode($client->phone,'/')}}</td>
                                             <td class="text-bold-500">{{$client->address}}</td>
                                             <td>
                                                 <form action="{{route('clients.destroy' , $client->id)}}" method="post">
@@ -87,7 +87,7 @@
                                     @endforeach
                                     </tbody>
                                 </table>
-{{--                                {{ $clients->appends(request()->query())->links() }}--}}
+                                {{ $clients->appends(request()->query())->links() }}
                             </div>
                             @else
                                 <h2>{{__('site.no_data_found')}}</h2>

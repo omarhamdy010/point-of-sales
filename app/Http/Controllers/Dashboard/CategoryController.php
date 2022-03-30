@@ -64,15 +64,13 @@ class CategoryController extends Controller
         return redirect()->route('categories.index');
     }
 
-    public
-    function edit(Category $category)
+    public function edit(Category $category)
     {
         return view('dashboard.categories.edit', compact('category'));
     }
 
 
-    public
-    function update(Request $request, Category $category)
+    public function update(Request $request, Category $category)
     {
         $rule = [];
         foreach(config('translatable.locales') as $local)
@@ -99,6 +97,7 @@ class CategoryController extends Controller
         }
 
         Alert::toast('You\'ve Successfully updated', 'success');
+
         return redirect()->route('categories.index');
     }
 
@@ -111,6 +110,7 @@ class CategoryController extends Controller
         }
 
         $category->delete();
+
         Alert::toast('You\'ve Successfully deleted', 'success');
 
         return redirect()->route('categories.index');

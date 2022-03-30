@@ -24,6 +24,7 @@
                     <div class="card">
                         <div class="card-content">
                             <div class="card-body">
+
                                 @if($errors->any())
                                     <div class="alert alert-danger">
                                         @foreach($errors->all() as $error)
@@ -31,6 +32,7 @@
                                         @endforeach
                                     </div>
                                 @endif
+
                                 <form class="form form-vertical" action="{{route('clients.store')}}" method="post"
                                       enctype="multipart/form-data">
                                     @csrf
@@ -43,29 +45,24 @@
                                                    name="name" value="{{old('name')}}">
                                         </div>
 
-                                        <div class="col-md-6 col-12">
-                                            <label class="form-label"> phone </label>
-                                            <input type="text" class="form-control"
-                                                   placeholder="{{__('site.phone')}}"
-                                                   name="phone" value="">
-                                        </div>
+                                        @for($i=0 ; $i<2 ; $i++)
+                                            <div class="col-md-6 col-12">
+                                                <label class="form-label"> phone{{$i+1}} </label>
+                                                <input type="text" class="form-control"
+                                                       placeholder="{{__('site.phone')}}" name="phone[]"
+                                                       value="{{old('phone[]')}}">
+                                            </div>
 
-                                        <div class="col-md-6 col-12">
-                                            <label class="form-label"> phone </label>
-                                            <input type="text" class="form-control"
-                                                   placeholder="{{__('site.phone')}}"
-                                                   name="phone" value="">
-                                        </div>
-
-
+                                        @endfor
                                         <div class="col-md-6 col-12">
                                             <label class="form-label"> Address </label>
-                                            <textarea name="address" class="form-control" placeholder="Address">{{old('address')}}</textarea>
+                                            <textarea name="address" class="form-control"
+                                                      placeholder="Address">{{old('address')}}</textarea>
                                         </div>
+
                                     </div>
 
-
-                                    <div class="col-12 d-flex justify-content-end">
+                                    <div class=" card-body col-12 d-flex justify-content-end">
                                         <button type="submit" class="btn btn-primary me-1 mb-1" id="output">Create
                                         </button>
                                     </div>

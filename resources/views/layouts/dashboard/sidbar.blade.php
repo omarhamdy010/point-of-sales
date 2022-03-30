@@ -116,7 +116,7 @@
                                     <a href="{{route('clients.index')}}">clients</a>
                                 </li>
                                 <li class="submenu-item {{request()->routeIs('clients.create') ? 'active' : '' }}">
-                                    <a href="{{route('clients.create')}}">create products</a>
+                                    <a href="{{route('clients.create')}}">create clients</a>
                                 </li>
                             </ul>
                         @endif
