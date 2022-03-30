@@ -16,7 +16,7 @@ class ClientController extends Controller
             ->orWhere('phone','like','%'.$request->search . '%')
             ->orWhere('address','like','%'.$request->search . '%');
         })->
-        paginate(5);
+        paginate(10);
 
         return view('dashboard.clients.index', compact('clients'));
     }

@@ -21,7 +21,7 @@
         <section class="content">
             <div class="row" id="table-contexual">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card navbar-light bg-light">
                         <div class="row">
                             <div class="card-content">
                                 <div class="card-body">

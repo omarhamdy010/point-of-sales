@@ -21,7 +21,7 @@
         <section class="content">
             <div class="row" id="table-contexual">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card navbar-light bg-light">
                         <div class="row">
                             <div class="card-content">
                                 <div class="card-body">
@@ -66,7 +66,7 @@
                                             <td class="text-bold-500">{{$index+1}}</td>
                                             <td class="text-bold-500">{{$client->name}}</td>
                                             <td class="text-bold-500">{{implode($client->phone,'/')}}</td>
-                                            <td class="text-bold-500">{{$client->address}}</td>
+                                            <td class="text-bold-500">{!! $client->address !!}</td>
                                             <td>
                                                 <form action="{{route('clients.destroy' , $client->id)}}" method="post">
                                                     @csrf

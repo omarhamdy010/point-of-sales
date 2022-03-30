@@ -21,7 +21,7 @@
         <section class="content" id="multiple-column-form">
             <div class="row match-height">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card navbar-light bg-light">
                         <div class="card-content">
                             <div class="card-body">
 
@@ -50,13 +50,13 @@
                                                 <label class="form-label"> phone{{$i+1}} </label>
                                                 <input type="text" class="form-control"
                                                        placeholder="{{__('site.phone')}}" name="phone[]"
-                                                       value="{{old('phone[]')}}">
+                                                       value="{{old('phone['.$i.']')}}">
                                             </div>
 
                                         @endfor
                                         <div class="col-md-6 col-12">
                                             <label class="form-label"> Address </label>
-                                            <textarea name="address" class="form-control"
+                                            <textarea name="address" class="form-control ckeditor"
                                                       placeholder="Address">{{old('address')}}</textarea>
                                         </div>
 

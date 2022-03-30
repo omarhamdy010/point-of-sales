@@ -5,14 +5,13 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <p style="font-size:25px">{{__('site.categories')}}<small style="font-size:5px">{{$categories->count()}}</small></p>
+                    <p style="font-size:25px">{{__('site.categories')}}<small style="font-size:13px">{{$categories->count()}}</small></p>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
-                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <nav aria-label="breadcrumb" class="float-lg-end">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a
-                                    href="{{route('dashboard.index')}}">{{__('site.dashboard')}}</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">{{__('site.category')}}</li>
+                            <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}">{{__('site.dashboard')}}</a></li>
+                            <li class="breadcrumb-item" aria-current="page">{{__('site.category')}}</li>
                         </ol>
                     </nav>
                 </div>
@@ -21,7 +20,7 @@
         <section class="content">
             <div class="row" id="table-contexual">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card  bg-light">
                         <div class="row">
                             <div class="card-content">
                                 <div class="card-body">

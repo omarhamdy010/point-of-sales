@@ -12,7 +12,8 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a
                                     href="{{route('dashboard.index')}}">{{__('site.dashboard')}}</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">{{__('site.category')}}</li>
+                            <li class="breadcrumb-item " aria-current="page">{{__('site.category')}}</li>
+                            <li class="breadcrumb-item active" aria-current="page">{{__('site.edit')}}</li>
                         </ol>
                     </nav>
                 </div>
@@ -21,7 +22,7 @@
         <section class="content" id="multiple-column-form">
             <div class="row match-height">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card navbar-light bg-light">
                         <div class="card-content">
                             <div class="card-body">
                                 <form class="form form-vertical" action="{{route('categories.update',$category->id)}}"

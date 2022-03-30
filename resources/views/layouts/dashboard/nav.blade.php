@@ -3,7 +3,7 @@
     <div class="btn-group mb-1">
         <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle me-1" type="button" id="dropdownMenuButton"
-                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    data-bs-toggle="dropdown" style="color: white;background-color: #435ebe" aria-haspopup="true" aria-expanded="false">
                 @if ( Config::get('app.locale') == 'en')
 
                     {{ 'English' }}
@@ -12,12 +12,12 @@
 
                     {{ 'العربيه' }}
 
-                @endif        
+                @endif
             </button>
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                    <a rel="alternate" class="dropdown-item" hreflang="{{ $localeCode }}"
+                    <a rel="alternate" class="dropdown-item {{  Request::segment(1) ==  $localeCode ? 'active' : '' }}" hreflang="{{ $localeCode }}"
                        href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
                         {{ $properties['native'] }}
                     </a>
@@ -36,7 +36,7 @@
                 </div>
             </div>
         </div>
-        
+
         @endif -->
         <!-- <div class="dropdown" style="width:250px; float:right;">
             @auth

@@ -21,7 +21,7 @@
         <section class="content" id="multiple-column-form">
             <div class="row match-height">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card navbar-light bg-light">
                         <div class="card-content">
                             <div class="card-body">
                                 <form class="form form-vertical" action="{{route('users.update',$user->id)}}"

@@ -21,7 +21,7 @@
         <section class="content" id="multiple-column-form">
             <div class="row match-height">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card navbar-light bg-light">
                         <div class="card-content">
                             <div class="card-body">
                                 <form class="form form-vertical" action="{{route('clients.update',$client->id)}}"
@@ -48,7 +48,7 @@
 
                                                 <div class="col-md-6 col-12">
                                                     <label class="form-label"> Address </label>
-                                                    <textarea name="address" class="form-control" placeholder="Address">{{$client->address}}</textarea>
+                                                    <textarea name="address" class="form-control ckeditor" placeholder="Address">{{$client->address}}</textarea>
                                                 </div>
 
                                         <div class="card-body col-12 d-flex justify-content-end">
