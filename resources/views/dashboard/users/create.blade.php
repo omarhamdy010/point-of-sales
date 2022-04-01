@@ -102,7 +102,7 @@
                                         </div>
                                     </div>
                                     @php
-                                        $roles = ['users','category','product'];
+                                        $roles = ['users','category','product','clients','orders'];
                                             $permissions = ['create','update','delete','read'];
                                     @endphp
                                     <div class="card-header">

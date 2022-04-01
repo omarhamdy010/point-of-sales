@@ -56,6 +56,7 @@
                                         <th>{{__('site.name')}}</th>
                                         <th>{{__('site.phone')}}</th>
                                         <th>{{__('site.address')}}</th>
+                                        <th>{{__('site.create_order')}}</th>
                                         <th>{{__('site.action')}}</th>
                                     </tr>
                                     </thead>
@@ -67,6 +68,13 @@
                                             <td class="text-bold-500">{{$client->name}}</td>
                                             <td class="text-bold-500">{{implode($client->phone,'/')}}</td>
                                             <td class="text-bold-500">{!! $client->address !!}</td>
+                                            <td class="text-bold-500">
+                                                @if(auth()->user()->haspermission('orders_read'))
+                                                <a href="{{route('clients.orders.create',$client->id)}}" class="btn btn-primary">{{__('site.create_order')}}</a>
+                                                @else
+                                                    <a class="btn btn-primary disabled">{{__('site.create_order')}}</a>
+                                                @endif
+                                            </td>
                                             <td>
                                                 <form action="{{route('clients.destroy' , $client->id)}}" method="post">
                                                     @csrf

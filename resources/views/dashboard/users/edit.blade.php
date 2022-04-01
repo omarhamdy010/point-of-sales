@@ -96,7 +96,7 @@
                                             <img id="output" style="margin-top: 20px ; height: 200px;width: 200px" src="{{$user->image_path}}" />
                                         </div>
                                         @php
-                                            $roles = ['users','categories','products'];
+                                            $roles = ['users','categories','products','clients','orders'];
                                                 $permissions = ['create','update','delete','read'];
                                         @endphp
                                         <div class="card-header">

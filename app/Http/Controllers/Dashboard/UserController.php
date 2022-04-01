@@ -74,17 +74,14 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
-    public
-    function edit(User $user)
+    public function edit(User $user)
     {
         return view('dashboard.users.edit', compact('user'));
     }
 
 
-    public
-    function update(Request $request, User $user)
+    public function update(Request $request, User $user)
     {
-//        dd($request->all());
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
@@ -114,10 +111,8 @@ class UserController extends Controller
 
             $data['image'] = $request->image->hashName();
             $user->update($data);
-
         } else {
             $data['image'] = $user->image;
-
             $user->update($data);
         }
 
@@ -126,6 +121,7 @@ class UserController extends Controller
             $user->syncPermissions($request->permissions);
         }
         Alert::toast('You\'ve Successfully updated', 'success');
+
         return redirect()->route('users.index');
     }
 
