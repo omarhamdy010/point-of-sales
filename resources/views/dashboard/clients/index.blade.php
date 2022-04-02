@@ -66,7 +66,7 @@
                                         <tr class="table-primary">
                                             <td class="text-bold-500">{{$index+1}}</td>
                                             <td class="text-bold-500">{{$client->name}}</td>
-                                            <td class="text-bold-500">{{implode($client->phone,'/')}}</td>
+                                            <td class="text-bold-500">{{is_array($client->hone) ? implode($client->phone,'/') : $client->phone}}</td>
                                             <td class="text-bold-500">{!! $client->address !!}</td>
                                             <td class="text-bold-500">
                                                 @if(auth()->user()->haspermission('orders_read'))

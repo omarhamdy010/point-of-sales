@@ -11,6 +11,7 @@ $(document).ready(function () {
         var html =`
         <tr>
         <td>${name}</td>
+        <input type="hidden" name="products[]" value="${id}">
         <td><input type="number" name="quantities[]" data-price="${price}" min="1" value="1" class="form-control input-sm product-quantity"></td>
         <td class="price">${price}</td>
         <td><a class="btn btn-danger btn-sm delete_product" data-id="${id}"><i class="fa fa-trash"></i></a></td>
@@ -38,8 +39,8 @@ $(document).ready(function () {
         // calculate_total();
 
         var quantity = $(this).val();
-        var price = Number($(this).data('price'));
-        Number($(this).closest('tr').find('.price').html($.number(quantity * price ,2)));
+        var unit_price = parseFloat($(this).data('price').replace(/,/g, ''));
+        Number($(this).closest('tr').find('.price').html($.number(quantity * unit_price ,2)));
         calculate_total();
     });
 

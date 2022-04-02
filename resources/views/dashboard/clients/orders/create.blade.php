@@ -62,7 +62,7 @@
                                                             <tr>
                                                                 <td>{{$product->name}}</td>
                                                                 <td>{{$product->stock}}</td>
-                                                                <td>{{$product->selling_price}}</td>
+                                                                <td>{{number_format($product->selling_price , 2)}}</td>
                                                                 <td>
                                                                     <a href=""
                                                                        id="product-{{$product->id}}"
@@ -87,6 +87,9 @@
                         </div>
 
                         <div class="col-md-6 row">
+                            <form action="{{route('clients.orders.store',$client->id)}}" method="post">
+                                @method('post')
+                                @csrf
                             <div class="card">
                                 <div class="card-header border-0">
                                     <div class="d-flex justify-content-between">
@@ -116,10 +119,11 @@
 
 
                                     <div class="d-flex flex-row justify-content-end">
-                                            <a class="btn btn-primary btn-block disabled form-control"  id="add_order_btn" style="background-color: #435ebe">{{__('site.add_order')}}</a>
+                                            <button  type="submit" class="btn btn-primary btn-block disabled form-control"  id="add_order_btn" style="background-color: #435ebe">{{__('site.add_order')}}</button>
                                     </div>
                                 </div>
                             </div>
+                            </form>
                         </div>
 
                     </div>
