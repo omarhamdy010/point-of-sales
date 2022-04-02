@@ -61,6 +61,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 
 <script src="{{asset('assets/js/adminlte.min.js')}}"></script>
+<script src="{{asset('assets/js/jquery.number.min.js')}}"></script>
 <script src="{{asset('assets/vendors/fontawesome/all.min.js')}}"></script>
 
 <script src="{{asset('assets/vendors/simple-datatables/simple-datatables.js')}}"></script>

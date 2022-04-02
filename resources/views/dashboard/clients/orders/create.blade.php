@@ -100,9 +100,9 @@
                                         <table class="table table-hover">
                                             <thead>
                                             <tr>
-                                                <th>{{__('site.price')}}</th>
-                                                <th>{{__('site.quantity')}}</th>
                                                 <th>{{__('site.product')}}</th>
+                                                <th>{{__('site.quantity')}}</th>
+                                                <th>{{__('site.price')}}</th>
                                             </tr>
                                             </thead>
                                             <tbody class="order-list">
@@ -116,7 +116,7 @@
 
 
                                     <div class="d-flex flex-row justify-content-end">
-                                            <a class="btn btn-primary form-control" style="background-color: #435ebe">{{__('site.add_order')}}</a>
+                                            <a class="btn btn-primary btn-block disabled form-control"  id="add_order_btn" style="background-color: #435ebe">{{__('site.add_order')}}</a>
                                     </div>
                                 </div>
                             </div>

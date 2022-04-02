@@ -73,7 +73,7 @@
                                             <div class="form-group">
                                                 <label for="last-name-column">selling price</label>
                                                 <input type="number" id="selling price" value="{{old('selling price')}}"
-                                                       class="form-control" placeholder="selling price"
+                                                       class="form-control" placeholder="selling price" step="0.01"
                                                        name="selling_price">
                                             </div>
                                         </div>
@@ -82,7 +82,7 @@
                                             <div class="form-group">
                                                 <label for="last-name-column">Purchasing price</label>
                                                 <input type="number" id="Purchasing price" value="{{old('Purchasing price')}}"
-                                                       class="form-control" placeholder="Purchasing price"
+                                                       class="form-control" placeholder="Purchasing price" step="0.01"
                                                        name="Purchasing_price">
                                             </div>
                                         </div>
@@ -115,7 +115,7 @@
                                     </div>
 
                                     <div class="col-12 d-flex justify-content-end">
-                                        <button type="submit" class="btn btn-primary me-1 mb-1" id="output">Submit
+                                        <button type="submit" class="btn btn-primary me-1 mb-1" id="output">{{__('site.create')}}
                                         </button>
                                     </div>
                                 </form>

@@ -47,7 +47,7 @@ return [
     'add'=>'add',
     'total'=>'Total',
     'add_order'=>'Add Order',
-    ''=>'',
+    'edit'=>'Edit',
     ''=>'',
     ''=>'',
     ''=>'',

@@ -65,7 +65,7 @@
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <label for="last-name-column">{{__('site.selling_price')}}</label>
-                                                <input type="number" id="selling price"
+                                                <input type="number" id="selling price" step="0.01"
                                                        value="{{$product->selling_price}}"
                                                        class="form-control" placeholder="selling price"
                                                        name="selling_price">
@@ -76,7 +76,7 @@
                                             <div class="form-group">
                                                 <label for="last-name-column">{{__('site.Purchasing_price')}}</label>
                                                 <input type="number" id="Purchasing price"
-                                                       value="{{$product->Purchasing_price}}"
+                                                       value="{{$product->Purchasing_price}}" step="0.01"
                                                        class="form-control" placeholder="Purchasing price"
                                                        name="Purchasing_price">
                                             </div>
@@ -110,7 +110,7 @@
                                         </div>
 
                                         <div class="col-12 d-flex justify-content-end">
-                                            <button type="submit" class="btn btn-primary me-1 mb-1">{{__('site.submit')}}</button>
+                                            <button type="submit" class="btn btn-primary me-1 mb-1">{{__('site.edit')}}</button>
                                         </div>
                                     </div>
                                 </form>
