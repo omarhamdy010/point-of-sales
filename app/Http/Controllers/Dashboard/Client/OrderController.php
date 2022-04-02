@@ -3,25 +3,35 @@
 namespace App\Http\Controllers\Dashboard\Client;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Category;
 
 class OrderController extends Controller
 {
-    public function create(){
-return view('dashboard.clients.orders.create');
+    public function create()
+    {
+        $categories = Category::with('product')->get();
+        return view('dashboard.clients.orders.create',compact('categories'));
     }
-    public function store(){
 
-    }
-    public function edit(){
-
-
-    }
-    public function update(){
-
+    public function store()
+    {
 
     }
-    public function destroy(){
+
+    public function edit()
+    {
+
+
+    }
+
+    public function update()
+    {
+
+
+    }
+
+    public function destroy()
+    {
 
     }
 }

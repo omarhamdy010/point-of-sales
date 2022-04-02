@@ -56,6 +56,7 @@
 <script src="{{asset('assets/js/pages/dashboard.js')}}"></script>
 <script src="{{asset('assets/js/jquery.min.js')}}"></script>
 <script src="{{asset('dashboard/plugins/ckeditor/ckeditor.js')}}"></script>
+<script src="{{asset('dashboard/custom/order.js')}}"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 
