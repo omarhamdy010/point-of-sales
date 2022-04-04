@@ -127,6 +127,25 @@
                 @endif
             @endif
 
+            @if(auth()->user())
+                @if(auth()->user()->hasPermission('orders_read'))
+                    <li class="sidebar-item  has-sub {{ Request::segment(3) == 'orders' ? 'active' : '' }}
+                    {{ Request::segment(5) == 'edit'  && Request::segment(3) == 'clients' ? 'active' : '' }}">
+                        <a href="#" class='sidebar-link'>
+                            <i class="fa fa-first-order-alt"></i>
+                            <span>Orders</span>
+                        </a>
+                        @if(auth()->user()->hasPermission('clients_read'))
+                            <ul class="submenu {{Request::segment(3) == 'clients' ? 'active' : ''}}">
+                                <li class="submenu-item {{ Request::segment(3) == 'clients' && Request::segment(4) != 'create' ? 'active' : '' }}">
+                                    <a href="{{route('orders.index')}}">Orders</a>
+                                </li>
+                            </ul>
+                        @endif
+                    </li>
+                @endif
+            @endif
+
             @if(!auth()->user())
                 <li class="sidebar-item">
                     <a href="{{ route('login') }}" rel="alternate" class="dropdown-item">

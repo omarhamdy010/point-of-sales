@@ -7,12 +7,12 @@ $(document).ready(function () {
         var price= $.number($(this).data('price'),2);
 
         $(this).removeClass('btn-success').addClass('btn-default disabled');
+    // <input type="hidden" name="product_ids[]" value="${id}">
 
         var html =`
         <tr>
         <td>${name}</td>
-        <input type="hidden" name="products[]" value="${id}">
-        <td><input type="number" name="quantities[]" data-price="${price}" min="1" value="1" class="form-control input-sm product-quantity"></td>
+        <td><input type="number" name="products[${id}][quantity]" data-price="${price}" min="1" value="1" class="form-control input-sm product-quantity"></td>
         <td class="price">${price}</td>
         <td><a class="btn btn-danger btn-sm delete_product" data-id="${id}"><i class="fa fa-trash"></i></a></td>
         </tr>`;
