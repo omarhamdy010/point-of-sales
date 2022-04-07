@@ -15,6 +15,6 @@ class Order extends Model
     }//end of relation one to many
 
     public function products(){
-        return $this->belongsToMany(Product::class , 'product_orders');
+        return $this->belongsToMany(Product::class , 'product_orders')->withPivot('quantity');
     }//end of relation many to many
 }//end of model

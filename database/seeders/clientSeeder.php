@@ -14,7 +14,7 @@ class clientSeeder extends Seeder
      */
     public function run()
     {
-        $clients = ['cli_one','cli_two','cli_three'];
+        $clients = ['omar','mohamed','ahmed'];
         foreach ($clients as $client){
             Client::create([
                 'name'=>$client ,

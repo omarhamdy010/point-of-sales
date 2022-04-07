@@ -69,7 +69,6 @@ class ClientController extends Controller
         ]);
         $data = $request->all();
         $data['phone'] = array_filter($request->phone);
-//       Client::update($data); //when use this dont run and error is Using $this when not in object context
         $client->update($data);
 
         Alert::toast('You\'ve Successfully updated', 'success');

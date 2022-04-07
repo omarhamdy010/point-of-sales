@@ -55,8 +55,6 @@
                 @endif
             @endif
 
-
-
             @if(auth()->user())
                 @if(auth()->user()->hasPermission('categories_read'))
                     <li class="sidebar-item  has-sub {{ Request::segment(3) == 'categories' ? 'active' : '' }}
@@ -149,10 +147,9 @@
             @if(!auth()->user())
                 <li class="sidebar-item">
                     <a href="{{ route('login') }}" rel="alternate" class="dropdown-item">
-                        <i class="fa fa-arrow-alt-circle-right"></i> <span>Login</span></a>
+                        <i class="fa fa-arrow-alt-circle-right"></i>Login
+                    </a>
                 <li>
-            @else
-
             @endif
 
 
@@ -166,8 +163,6 @@
                         </button>
                     </form>
                 </li>
-            @else
-
             @endif
 
         </ul>
