@@ -6,7 +6,7 @@ var optionsProfileVisit = {
 		enabled:false
 	},
 	chart: {
-		type: 'bar',
+		type: 'line',
 		height: 300
 	},
 	fill: {
@@ -103,8 +103,8 @@ let optionsIndonesia = {
 
 
 
-var chartProfileVisit = new ApexCharts(document.querySelector("#chart-profile-visit"), optionsProfileVisit);
-var chartVisitorsProfile = new ApexCharts(document.getElementById('chart-visitors-profile'), optionsVisitorsProfile)
+// var chartProfileVisit = new ApexCharts(document.querySelector("#line"), optionsProfileVisit);
+// var chartVisitorsProfile = new ApexCharts(document.getElementById('line'), optionsVisitorsProfile);
 var chartEurope = new ApexCharts(document.querySelector("#chart-europe"), optionsEurope);
 var chartAmerica = new ApexCharts(document.querySelector("#chart-america"), optionsAmerica);
 var chartIndonesia = new ApexCharts(document.querySelector("#chart-indonesia"), optionsIndonesia);
@@ -112,5 +112,5 @@ var chartIndonesia = new ApexCharts(document.querySelector("#chart-indonesia"), 
 chartIndonesia.render();
 chartAmerica.render();
 chartEurope.render();
-chartProfileVisit.render();
-chartVisitorsProfile.render()
+// chartProfileVisit.render();
+// chartVisitorsProfile.render();

@@ -84,25 +84,43 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Profile Visit</h4>
+                                <h4>Line Chart</h4>
                             </div>
                             <div class="card-body">
-                                <div id="chart-profile-visit"></div>
+                                <div class="chart" id="line"></div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-3">
-
-
-                <div class="card">
-
-                    <div class="card-body">
-                        <div id="chart-visitors-profile"></div>
                     </div>
                 </div>
             </div>
         </section>
     </div>
 @endsection
+@push('scripts')
+    <script>
+
+        var lineOptions = {
+            chart: {
+                type: "line",
+            },
+            series: [
+                {
+                    name: "total",
+                    data: [
+                        @foreach($sales_data as $data)
+                        {{$data->sum}},
+                        @endforeach
+                    ],
+                },
+            ],
+            xaxis: {
+                categories: [
+                    @foreach($sales_data as $data)
+
+                   " {{$data->year}} - {{$data->month}}",
+                    @endforeach
+                ],
+            },
+        };
+    </script>
+@endpush

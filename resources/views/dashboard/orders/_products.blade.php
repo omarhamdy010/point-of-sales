@@ -1,4 +1,4 @@
-<table class="table table-hover table-bordered table mb-0" id="print-area">
+<table class="table table-hover table mb-0" id="print-area">
     <thead>
     <tr>
         <th>#</th>
@@ -10,7 +10,7 @@
     <tbody>
 
     @foreach($products as $index=>$product)
-        <tr class="table-primary">
+        <tr>
             <td class="text-bold-500">{{$index+1}}</td>
             <td class="text-bold-500">{{$product->name}}</td>
             <td class="text-bold-500">{{$product->pivot->quantity}}</td>
@@ -19,4 +19,10 @@
     @endforeach
     </tbody>
 </table>
-<h3>{{__('site.total')}} <span> {{number_format($order->total_price, 2)}}</span></h3>
+<div class="row">
+    <h5>{{__('site.total')}} <span> {{number_format($order->total_price, 2)}}</span></h5>
+</div>
+
+<div>
+    <button class="btn btn-block btn-primary print-btn">{{__('site.print')}}</button>
+</div>

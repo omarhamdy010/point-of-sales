@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
         {{--        {{ title }} - {{ web_title }}--}}
     </title>
@@ -11,6 +12,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.css')}}">
@@ -45,18 +49,25 @@
         @yield('content')
         @include('layouts.dashboard.session')
         @include('sweetalert::alert')
+        @yield('js')
+        @stack('scripts')
 
     </div>
 </div>
+
 <script src="{{asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
 <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('assets/js/main.js')}}"></script>
 <script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
-<script src="{{asset('assets/vendors/apexcharts/apexcharts.js')}}"></script>
 <script src="{{asset('assets/js/pages/dashboard.js')}}"></script>
 <script src="{{asset('assets/js/jquery.min.js')}}"></script>
 <script src="{{asset('dashboard/plugins/ckeditor/ckeditor.js')}}"></script>
+<script src="{{asset('dashboard/plugins/printThis.js')}}"></script>
 <script src="{{asset('dashboard/custom/order.js')}}"></script>
+<link rel="stylesheet" href="{{asset('assets/vendors/apexcharts/apexcharts.css')}}">
+<script src="{{asset('assets/vendors/apexcharts/apexcharts.js')}}"></script>
+<script src="{{asset('assets/js/pages/ui-apexchart.js')}}"></script>
+<script src="{{asset('assets/vendors/dayjs/dayjs.min.js')}}"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 

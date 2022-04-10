@@ -1,9 +1,6 @@
 @extends('layouts.dashboard.app')
 
 @section('content')
-
-
-
     <div class="page-heading">
         <div class="page-title">
             <div class="row">
@@ -39,7 +36,12 @@
                                         <div class="box-body">
                                             <div id="loading"
                                                  style="display: none ; flex-direction: column ; align-items: center">
-                                                <div class="loader"></div>
+                                                <div class="lds-ellipsis">
+                                                    <div>1</div>
+                                                    <div>2</div>
+                                                    <div>3</div>
+                                                    <div>4</div>
+                                                </div>
                                                 <p style="margin-top: 10px">{{__('site.loading')}}</p>
                                             </div>
                                             <div id="order-product-list">
@@ -73,9 +75,7 @@
                                 <div class="card-header border-0">
                                     <div class="d-flex justify-content-between">
                                         <a></a>
-                                        <h3>{{__('site.orders')}}
-                                            {{--                    <h6> {{$orders->total() . __('site.orders')}}</h6>--}}
-                                        </h3>
+                                        <h3>{{__('site.orders')}}</h3>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -84,8 +84,7 @@
                                             <div class="row">
                                                 <div class="col-md-8">
                                                     <input type="text" name="search" class="form-control"
-                                                           value="{{request()->search}}"
-                                                           placeholder="Search">
+                                                           value="{{request()->search}}" placeholder="Search">
                                                 </div>
                                                 <div class="col-md-4">
                                                     <button type="submit" class="btn btn-primary"><i
@@ -120,28 +119,37 @@
                                                         </td>
                                                         <td>{{$order->created_at->toFormattedDateString()}}</td>
                                                         <td>
-                                                            <button class="btn btn-primary btn-sm order-products"
-                                                                    data-url="{{route('orders.products',$order->id)}}"
-                                                                    data-method="get"
-                                                            >
-                                                                <i class="fa fa-list"></i>{{__('site.show')}}
-                                                            </button>
-                                                            @if(auth()->user()->hasPermission('orders_update'))
-                                                                <a class="btn btn-warning btn-sm"
-                                                                   href="{{route('clients.orders.edit',['client'=>$order->client->id,'order'=>$order->id])}}"><i
-                                                                        class="fa fa-edit"></i> {{__('site.edit')}}</a>
-                                                            @else
-                                                                <a href="#" disabled class="btn btn-warning btn-sm"><i
-                                                                        class="fa fa-edit"></i>{{__('site.edit')}}</a>
-                                                            @endif
-
-                                                            <form action="{{route('orders.destroy',$order->id)}}" method="post">
-                                                                @if(auth()->user()->hasPermission('orders_delete'))
+                                                            <form action="{{route('orders.destroy',$order->id)}}"
+                                                                  method="post">
                                                                 @method('DELETE')
-                                                                     @csrf
-                                                                    <button type="submit" class="btn btn-danger delete"><i class="fa fa-trash"></i>Delete</button>
+                                                                @csrf
+
+                                                                <a class="btn btn-primary btn-sm order-products"
+                                                                   data-url="{{route('orders.products',$order->id)}}"
+                                                                   data-method="get">
+                                                                    <i class="fa fa-list"></i>{{__('site.show')}}
+                                                                </a>
+                                                                @if(auth()->user()->hasPermission('orders_update'))
+                                                                    <a class="btn btn-warning btn-sm"
+                                                                       href="{{route('clients.orders.edit',['client'=>$order->client->id,'order'=>$order->id])}}"><i
+                                                                            class="fa fa-edit"></i> {{__('site.edit')}}
+                                                                    </a>
                                                                 @else
-                                                                    <button type="submit" class="btn btn-danger disabled">Delete</button>
+                                                                    <a href="#" disabled class="btn btn-warning btn-sm"><i
+                                                                            class="fa fa-edit"></i>{{__('site.edit')}}
+                                                                    </a>
+                                                                @endif
+
+                                                                @if(auth()->user()->hasPermission('orders_delete'))
+                                                                    <button type="submit"
+                                                                            class="btn btn-danger btn-sm delete">
+                                                                        <i class="fa fa-trash"></i>Delete
+                                                                    </button>
+                                                                @else
+                                                                    <button type="submit"
+                                                                            class="btn btn-danger btn-sm disabled">
+                                                                        Delete
+                                                                    </button>
                                                                 @endif
                                                             </form>
 
@@ -154,13 +162,9 @@
                                         {{__('site.no_data_found')}}
                                     @endif
                                 </div>
-
                             </div>
                         </div>
-
-
                     </div>
-
                 </div>
             </div>
         </section>

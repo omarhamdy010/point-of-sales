@@ -55,6 +55,8 @@ return [
     'status'=>'Status',
     'created_at'=>'Created_at',
     'actions'=>'Actions',
+    'edit_order'=>'Edit Order',
+    'print'=>'Print',
     ''=>'',
     ''=>'',
     ''=>'',

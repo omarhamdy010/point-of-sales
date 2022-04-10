@@ -19,7 +19,8 @@ class OrderController extends Controller
     public function create(Client $client)
     {
         $categories = Category::with('product')->get();
-        return view('dashboard.clients.orders.create', compact('categories', 'client'));
+        $orders = $client->orders()->with('products')->paginate(5);
+        return view('dashboard.clients.orders.create', compact('categories', 'client' , 'orders'));
     }
 
     public function store(Request $request, Client $client)
@@ -28,6 +29,41 @@ class OrderController extends Controller
             'products' => 'required|array',
         ]);
 
+        $this->attach_order($request, $client);
+
+        Alert::toast('You\'ve Successfully order created', 'success');
+
+        return redirect()->route('orders.index');
+    }
+
+    public function edit(Client $client, Order $order)
+    {
+        $categories = Category::with('product')->get();
+        $orders = $client->orders()->with('products')->paginate(5);
+
+        return view('dashboard.clients.orders.edit', compact('order', 'client', 'categories','orders'));
+    }
+
+    public function update(Request $request, Client $client, Order $order)
+    {
+        $request->validate([
+            'products' => 'required|array',
+        ]);
+        $this->detach_order($order);
+        $this->attach_order($request, $client);
+
+        Alert::toast('You\'ve Successfully order updated', 'success');
+
+        return redirect()->route('orders.index');
+    }
+
+    public function destroy()
+    {
+
+    }
+
+    private function attach_order($request, $client)
+    {
         $order = $client->orders()->create([]);
 
 
@@ -57,25 +93,21 @@ class OrderController extends Controller
 
         }
         $order->update(['total_price' => $total_price]);
-        Alert::toast('You\'ve Successfully order created', 'success');
-
-        return redirect()->route('orders.index');
     }
 
-    public function edit()
+    private function detach_order($order)
     {
+        foreach ($order->products as $product_item) {
+
+            $quantity = $product_item->pivot->quantity;
+
+            $product_item->update([
+                'stock' => $product_item->stock + $quantity,
+            ]);
+        }
 
 
-    }
-
-    public function update()
-    {
-
-
-    }
-
-    public function destroy()
-    {
+        $order->delete();
 
     }
 }
